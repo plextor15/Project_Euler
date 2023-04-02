@@ -2,22 +2,21 @@
 #
 # Problem 4 from ProjectEuler.net
 # A palindromic number reads the same both ways.
-# The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 Ã— 99.
+# The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
-# NOT WORKING!!
 
 maxXdigit = 999
 minXdigit = 100
-wynik = "----"
+wynik = 0
 
 a = maxXdigit
 b = maxXdigit
 c = 0
-nieZnaleziony = True
+palindList = []
 
 # a going to 1000
-while nieZnaleziony:
+while a >= minXdigit:
 	# b going to 1000
 	while True:
 		c = a * b
@@ -27,13 +26,14 @@ while nieZnaleziony:
 		#print(napis1)
 
 		if napis1 == napis2:
-			nieZnaleziony = False;
-			wynik = napis1
-			break
+			palindList.append(c)
 
 		b = b - 1
-		if b < minXdigit:
+		if b <= minXdigit:
 			b = maxXdigit
 			break
+
 	a = a - 1
+
+wynik = max(palindList)
 print(wynik)
