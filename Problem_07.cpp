@@ -5,40 +5,37 @@
 
 #include <cstdio>
 
-bool BruteDzielenie(int n)
-{
-	int i = 2;
-	while ( (i*i) <= n )
-	{
-		if ( (n % i) == 0 && i != n )
-		{
-			return false;
-		}
-		i += 1;
-	}
+bool czyPrime(int x) {
+    for (int i = 2; i * i <= x; ++i) {
+        if (x % i == 0) {
+            return false;
+        }
+    }
 
-	return true;
+    return true;
 }
 
-int main()
-{
-	int wynik=0;
-	int licznik = 0;
-	int curr_liczba = 2;
+int nthPrime(int n) {
+    int znalezione = 0;
+    int curr_liczba = 1;
 
-	int i = 2;
-	while (licznik < 1001)
-	{
-		if (BruteDzielenie(curr_liczba))
-		{
-			licznik += 1;
-			//printf("%i - %i\n", curr_liczba, licznik);
-		}
-		curr_liczba += 1;
-	}
+    while (znalezione < n) {
+        curr_liczba++;
+        if (czyPrime(curr_liczba)) {
+            znalezione++;
+        }
+    }
 
-	wynik = curr_liczba-1;
-	printf("\nWynik to: %i\n\n", wynik);
-	
-	return 0;
+    return curr_liczba;
+}
+
+int main() {
+    int n = 10001;
+    int wynik = nthPrime(n);
+
+    if (wynik != -1) {
+        printf("\nWynik to: %i\n\n", wynik);
+    }
+
+    return 0;
 }
